@@ -12,6 +12,12 @@ import Wishlist from './pages/Wishlist'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import ForgotPassword from './pages/ForgotPassword'
+import CartPage from './pages/CartPage'
+import PreviewPage from './pages/PreviewPage'
+import CheckOutPage from './pages/CheckOutPage'
+import SingleBlog from './pages/SingleBlog'
+import PlaceOrder from './pages/PlaceOrder'
+import BuyPage from './pages/BuyPage'
 
 
 
@@ -34,11 +40,17 @@ function App() {
     <Route path='compare-product' element={<CompareProduct/>} />
     <Route path='wishlist' element={<Wishlist/>} />
     <Route path='forgot-password' element={<ForgotPassword/>} />
+    <Route path="cart" element={<CartPage />} />
+    <Route path="checkout" element={<CheckOutPage />} />
+    <Route path="blog/:id" element={<SingleBlog />} />
+    <Route path="preview/:id" element={<PreviewPage />} />
+    <Route path="placeorder" element={<PlaceOrder />} />
+    <Route path="buynow" element={<BuyPage />} />
     </Route>
    </Routes>
    <Routes>
-    <Route path='/login' element={<Login/>}/>
-    <Route path='/signup' element={<SignUp/>}/>
+    <Route path='login' element={<Login/>}/>
+    <Route path='signup' element={<SignUp/>}/>
    </Routes>
    </BrowserRouter>
   

@@ -39,7 +39,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-3">Contact</h3>
           <ul className="space-y-2">
             <li>Email: info@example.com</li>
-            <li>Phone: +91 9876543210</li>
+            <li>Phone: +91 0000000000</li>
             <li>Location: Delhi, India</li>
             <li>Support Hours: 10am - 6pm</li>
           </ul>

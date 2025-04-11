@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsSearch } from "react-icons/bs";
 import { FaHeart, FaUser, FaShoppingCart, FaExchangeAlt, FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { useCart } from '../pages/CartContext';
 
 const Header = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [openSubCategory, setOpenSubCategory] = useState(null);
-
+  const { cartItems } = useCart();
+  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
@@ -59,12 +61,14 @@ const Header = () => {
             <FaUser /> Login
           </Link>
           <Link to="/cart" className="flex items-center gap-1 hover:text-blue-600 relative">
-            <FaShoppingCart className="text-lg" />
-            <span className="absolute -top-2 left-4 bg-red-500 text-white text-xs font-semibold rounded-full w-4 h-4 flex items-center justify-center">
-              0
-            </span>
-            <span>Cart</span>
-          </Link>
+  <FaShoppingCart className="text-lg" />
+  {cartCount > 0 && (
+    <span className="absolute -top-2 left-4 bg-red-500 text-white text-xs font-semibold rounded-full w-4 h-4 flex items-center justify-center">
+      {cartCount}
+    </span>
+  )}
+  <span>Cart</span>
+</Link>
         </div>
       </div>
 

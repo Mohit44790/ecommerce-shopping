@@ -1,5 +1,5 @@
 import React from 'react';
-import Breadcrumb from '../components/Breadcrumb';
+
 import { Link } from 'react-router-dom';
 import ProductCart from '../components/ProductCart';
 import { BiArrowFromLeft, BiArrowFromRight } from 'react-icons/bi';
@@ -7,7 +7,7 @@ import { BiArrowFromLeft, BiArrowFromRight } from 'react-icons/bi';
 const OurStore = () => {
   return (
     <>
-      <Breadcrumb title="Our Store" />
+     <h2 className='text-center py-2 text-lg'>Our Store</h2>
 
       <div className="flex flex-col md:flex-row gap-4 px-4">
         {/* LEFT SIDEBAR */}
@@ -89,10 +89,9 @@ const OurStore = () => {
           </div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div className=" sm:grid-cols-2 md:grid-cols-4 gap-4">
             <ProductCart />
-            <ProductCart />
-            <ProductCart />
+            
             
           </div>
 

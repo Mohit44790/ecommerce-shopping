@@ -5,10 +5,11 @@ import { BiSupport } from "react-icons/bi";
 import { LuBadgePercent } from "react-icons/lu";
 import { MdOutlinePayment } from "react-icons/md";
 import Marquee from "react-fast-marquee";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BlogCart from "../components/BlogCart";
 import ProductCart from "../components/ProductCart";
 import SpecialProduct from "../components/SpecialProduct";
+import Tilt from 'react-parallax-tilt';
 
 const sliderImages = [
   {
@@ -33,7 +34,11 @@ const sliderImages = [
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
 
+  const handleBuyClick = () => {
+    navigate("/buynow");
+  };
   const prevSlide = () => {
     setCurrentSlide((prev) =>
       prev === 0 ? sliderImages.length - 1 : prev - 1
@@ -132,68 +137,84 @@ const Home = () => {
 
   return (
     <>
-      <section className="py-6  px-4">
-        <div className="grid grid-cols-4  grid-rows-2 gap-4">
-          {/* Featured Slider Image */}
-          <div className="relative col-span-4 md:col-span-2 row-span-2 overflow-hidden rounded-xl">
+       <section className="py-6 px-4">
+      <div className="grid grid-cols-4 grid-rows-2 gap-4">
+        {/* Featured Slider Image */}
+        <Tilt
+          glareEnable={true}
+          glareMaxOpacity={0.3}
+          scale={1.02}
+          transitionSpeed={1000}
+        className="relative col-span-4 md:col-span-2 row-span-2 overflow-hidden rounded-xl"
+        >
+        <div className="relative col-span-4 md:col-span-2 row-span-2 overflow-hidden rounded-xl">
+       
+
+        
+          <img
+            src={current.url}
+            className="w-full h-full object-cover rounded-xl"
+            alt={current.title}
+          />
+          <div className="absolute inset-0 flex flex-col justify-center pl-6 text-white">
+            <p className="text-sm">SUPERCHARGED FOR PRO</p>
+            <h1 className="text-2xl md:text-3xl font-bold text-red-500">
+              {current.title}
+            </h1>
+            <p className="text-sm md:text-base">{current.subtitle}</p>
+            <p className="text-sm">{current.price}</p>
+            <button
+              onClick={handleBuyClick}
+              className="mt-2 bg-slate-900 text-white w-40 md:w-52 px-4 py-1 rounded-full text-sm"
+            >
+              BUY NOW
+            </button>
+          </div>
+
+          {/* Arrows */}
+          <div
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full cursor-pointer"
+            onClick={prevSlide}
+          >
+            <FaChevronLeft size={20} className="text-white" />
+          </div>
+          <div
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full cursor-pointer"
+            onClick={nextSlide}
+          >
+            <FaChevronRight size={20} className="text-white" />
+          </div>
+        </div></Tilt>
+
+        {/* Product Cards */}
+        {productCards.map((product, i) => (
+          <div
+            key={i}
+            className="relative col-span-2 md:col-span-1 row-span-1"
+          >
             <img
-              src={current.url}
+              src={product.img}
               className="w-full h-full object-cover rounded-xl"
-              alt={current.title}
+              alt={product.title}
             />
-            <div className="absolute inset-0  flex flex-col justify-center pl-6 text-white">
-              <p className="text-sm">SUPERCHARGED FOR PRO</p>
-              <h1 className="text-2xl md:text-3xl font-bold text-red-500">
-                {current.title}
-              </h1>
-              <p className="text-sm md:text-base">{current.subtitle}</p>
-              <p className="text-sm">{current.price}</p>
-              <button className="mt-2 bg-slate-900 text-white w-40 md:w-52 px-4 py-1 rounded-full text-sm">
+            <div className="absolute inset-0 p-3 text-white flex flex-col justify-center">
+              <p className="text-xs">NEW RELEASE</p>
+              <h2 className="text-sm md:text-lg text-red-400 font-semibold">
+                {product.title}
+              </h2>
+              <p className="text-xs md:text-sm">{product.desc}</p>
+              <p className="text-sm font-semibold">{product.price}</p>
+              <button
+                onClick={handleBuyClick}
+                className="mt-1 bg-slate-900 text-white text-xs px-3 py-1 rounded-full w-fit"
+              >
                 BUY NOW
               </button>
             </div>
-
-            {/* Arrows */}
-            <div
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full cursor-pointer"
-              onClick={prevSlide}
-            >
-              <FaChevronLeft size={20} className="text-white" />
-            </div>
-            <div
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black/40 p-2 rounded-full cursor-pointer"
-              onClick={nextSlide}
-            >
-              <FaChevronRight size={20} className="text-white" />
-            </div>
           </div>
-
-          {/* Product Cards */}
-          {productCards.map((product, i) => (
-            <div
-              key={i}
-              className="relative col-span-2 md:col-span-1 row-span-1"
-            >
-              <img
-                src={product.img}
-                className="w-full h-full object-cover rounded-xl"
-                alt={product.title}
-              />
-              <div className="absolute inset-0 p-3 text-white flex flex-col justify-center">
-                <p className="text-xs">NEW RELEASE</p>
-                <h2 className="text-sm md:text-lg text-red-400 font-semibold">
-                  {product.title}
-                </h2>
-                <p className="text-xs md:text-sm">{product.desc}</p>
-                <p className="text-sm font-semibold">{product.price}</p>
-                <button className="mt-1 bg-slate-900 text-white text-xs px-3 py-1 rounded-full w-fit">
-                  BUY NOW
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+        ))}
+      </div>
+    </section>
       <section className="py-6 px-9 rounded-lg  mx-4 bg-gray-300">
       <div className="grid grid-cols-2  sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:px-10 gap-4 text-sm text-gray-700">
         
@@ -360,12 +381,10 @@ const Home = () => {
     Our Latest News
   </h1>
 
-  <div className="grid bg-gray-100 mx-1  rounded-lg border grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+  <div >
 
     <BlogCart />
-    <BlogCart />
-    <BlogCart />
-    <BlogCart />
+    
   </div>
 </section>
 
@@ -375,22 +394,23 @@ const Home = () => {
     Features collection
   </h1>
 
-  <div className="grid mx-2 grid-cols-2 bg-gray-100 justify-around rounded-lg border py-3    sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 ">
+  {/* <div className="grid  mx-2 grid-cols-2 bg-gray-100 justify-around rounded-lg border py-3    sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 "> */}
+   
+
     <ProductCart/>
-    <ProductCart/>
-    <ProductCart/>
-    <ProductCart/>
-    <ProductCart/>
-  </div>
+    
+   
+    
+  {/* </div> */}
 </section>
 
 {/* /special Products */}
 <section className="px-4 py-1">
 <h1 className="text-2xl font-bold mb-6">Special Product</h1>
-<div className="grid grid-cols-1 bg-gray-100 px-2 rounded-lg border py-4  sm:grid-cols-2  gap-6">
+<div >
       <SpecialProduct />
-      <SpecialProduct />
-      <SpecialProduct />
+      
+      
     </div>
 </section>
 

@@ -1,102 +1,84 @@
-import React, { useState, useEffect } from 'react';
-import StarRatings from 'react-star-ratings';
+// pages/SpecialProducts.jsx
+import React from 'react';
+import SpecialProductCard from '../components/SpecialProductCard';
 
-const SpecialProduct = () => {
-  const images = [
-    "https://cdn.pixabay.com/photo/2018/05/01/13/04/miniature-3365503_1280.jpg",
-    "https://cdn.pixabay.com/photo/2014/12/15/19/29/screen-569515_640.jpg",
-    "https://cdn.pixabay.com/photo/2014/08/05/10/27/iphone-410311_640.jpg"
-  ];
+const specialProducts = [
+  {
+    id: 1,
+    name: "Havels Headphone",
+    description: "Crystal-clear audio and multi-color LED lighting for immersive experiences.",
+    price: 599,
+    rating: 4.5,
+    reviews: 120,
+    timer: 86400,
+    sold: 45,
+    totalStock: 100,
+    images: [
+      "https://m.media-amazon.com/images/I/615iJ+aVx6L._AC_UF1000,1000_QL80_DpWeblab_.jpg",
+      "https://www.myg.in/images/thumbnails/300/300/detailed/109/308673_2_wej7kc.jpg.png",
+      "https://i5.walmartimages.com/seo/Tikland-Noise-Cancelling-Wireless-Over-Ear-Headphones-Black_9538b47a-0a10-4b92-9205-9c5d29ef29df.38b1aafed799f74fbb1800ebfde252dc.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
+      ,
+    ]
+  },
+  {
+    id: 2,
+    name: "Wireless Smartwatch",
+    description: "Track your fitness goals and receive notifications on the go.",
+    price: 1499,
+    rating: 4.2,
+    reviews: 89,
+    timer: 43200,
+    sold: 20,
+    totalStock: 60,
+    images: [
+      "https://m.media-amazon.com/images/I/515EX2dUR9L._SX300_SY300_QL70_FMwebp_.jpg",
+      "https://m.media-amazon.com/images/I/71fswC8hgVL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/61Nc8bJRtEL._SX679_.jpg"
+    ]
+  },
+  {
+    id: 3,
+    name: "Noise Cancelling Earbuds",
+    description: "Compact and powerful with deep bass and noise cancellation.",
+    price: 899,
+    rating: 4.0,
+    reviews: 76,
+    timer: 36000,
+    sold: 35,
+    totalStock: 80,
+    images: [
+      "https://m.media-amazon.com/images/I/41YajcOIu0L._SX300_SY300_QL70_FMwebp_.jpg",
+      "https://m.media-amazon.com/images/I/31IdqsaOxVL._SX300_SY300_QL70_FMwebp_.jpg",
+      "https://m.media-amazon.com/images/I/81SoXmoJr-L._SY450_.jpg"
+    ]
+  },
+  {
+    id: 4,
+    name: "Gaming Mouse",
+    description: "Ergonomic design with high DPI settings for precision gaming.",
+    price: 799,
+    rating: 4.6,
+    reviews: 210,
+    timer: 72000,
+    sold: 70,
+    totalStock: 120,
+    images: [
+      "https://m.media-amazon.com/images/I/41I-azRJBLL._SX300_SY300_QL70_FMwebp_.jpg",
+      "https://m.media-amazon.com/images/I/81KDevJhhNL._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/91i-ZYTcf6L._SX679_.jpg"
+    ]
+  }
+];
 
-  const [mainImage, setMainImage] = useState(images[0]);
-  const [timeLeft, setTimeLeft] = useState(86400); // 1 day in seconds
-  const totalStock = 100;
-  const sold = 45;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const formatTime = (secs) => {
-    const h = String(Math.floor(secs / 3600)).padStart(2, "0");
-    const m = String(Math.floor((secs % 3600) / 60)).padStart(2, "0");
-    const s = String(secs % 60).padStart(2, "0");
-    return `${h}:${m}:${s}`;
-  };
-
+const SpecialProducts = () => {
   return (
-    <div className="p-4 grid grid-cols-1 border bg-white rounded-xl md:grid-cols-2 gap-6">
-      {/* Left Side */}
-      <div>
-      <div className="border rounded-xl overflow-hidden h-[300px] w-full">
-  <img 
-    src={mainImage} 
-    alt="Main Product" 
-    className="w-full h-full object-cover" 
-  />
-</div>
-        <div className="flex mt-4 gap-3  justify-center">
-          {images.map((img, idx) => (
-            <img
-              key={idx}
-              src={img}
-              alt={`Thumb ${idx}`}
-              onClick={() => setMainImage(img)}
-              className={`w-16 h-12 rounded-md border cursor-pointer object-cover ${
-                mainImage === img ? 'ring-2 ring-blue-500' : ''
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Right Side */}
-      <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">Havels Headphone</h2>
-        <p className="text-gray-600 text-sm">
-          These headphones deliver crystal-clear audio and feature multi-color LED lighting for immersive experiences.
-        </p>
-        
-        <div className="flex items-center gap-2">
-        <StarRatings
-  rating={4.5}
-  starRatedColor="gold"
-  starDimension="20px"
-  starSpacing="2px"
-  numberOfStars={5}
-  name="rating"
-/>
-          <span className="text-xs text-gray-500">(120 reviews)</span>
-        </div>
-
-        <div className="text-2xl font-bold text-green-600">₹599</div>
-
-        {/* Timer */}
-        <div className="text-sm text-red-500">
-          Sale ends in: <span className="font-semibold">{formatTime(timeLeft)}</span>
-        </div>
-
-        {/* Stock Info */}
-        <div className="w-full">
-          <div className="text-sm text-gray-700 mb-1">Products Left: {totalStock - sold} / {totalStock}</div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div
-              className="bg-green-500 h-2 rounded-full"
-              style={{ width: `${(sold / totalStock) * 100}%` }}
-            ></div>
-          </div>
-        </div>
-
-        {/* Buy Button */}
-        <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
-          Buy Now
-        </button>
-      </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+      {specialProducts.map((product, index) => (
+        <SpecialProductCard key={index} product={product} />
+      ))}
     </div>
   );
 };
 
-export default SpecialProduct;
+export default SpecialProducts;
