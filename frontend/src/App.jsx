@@ -18,6 +18,7 @@ import CheckOutPage from './pages/CheckOutPage'
 import SingleBlog from './pages/SingleBlog'
 import PlaceOrder from './pages/PlaceOrder'
 import BuyPage from './pages/BuyPage'
+import CategoryItemsPage from './pages/CategoryItemsPage'
 
 
 
@@ -44,6 +45,7 @@ function App() {
     <Route path="checkout" element={<CheckOutPage />} />
     <Route path="blog/:id" element={<SingleBlog />} />
     <Route path="preview/:id" element={<PreviewPage />} />
+    <Route path="/category/:title" element={<CategoryItemsPage />} />
     <Route path="placeorder" element={<PlaceOrder />} />
     <Route path="buynow" element={<BuyPage />} />
     </Route>

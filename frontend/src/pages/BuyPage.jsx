@@ -1,6 +1,6 @@
 // src/pages/BuyPage.jsx
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const BuyPage = () => {
   const navigate = useNavigate();
@@ -40,12 +40,12 @@ const BuyPage = () => {
             placeholder="Shipping Address"
             className="w-full border px-4 py-2 rounded-md"
           />
-          <button
+        <Link to={"/checkout"}>  <button
             type="submit"
             className="w-full bg-slate-900 text-white py-2 rounded-md hover:bg-slate-800 transition"
           >
             Place Order
-          </button>
+          </button></Link>
         </form>
 
         <button

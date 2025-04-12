@@ -48,14 +48,14 @@ const OurStore = () => {
             <div className="mb-3">
               <h3 className="font-medium">Color</h3>
               <div className="flex gap-1 flex-wrap">
-                {["red", "blue", "green", "black" ,"yellow"].map((color) => (
-                  <div key={color} className={`w-5 h-5 rounded-full bg-${color}-500 border cursor-pointer`} />
+                {["red", "blue", "green", "black"].map((color) => (
+                  <div key={color} className={`w-5 h-5 bg-pink rounded-full bg-${color}-500 border cursor-pointer`} />
                 ))}
               </div>
             </div>
 
             <div>
-              <h3 className="font-medium">Size</h3>
+              <h3 className="font-medium ">Size</h3>
               <div className="flex gap-2 text-sm mt-1">
                 {["S", "M", "L", "XL"].map((size) => (
                   <button key={size} className="border px-2 py-1 rounded">{size}</button>

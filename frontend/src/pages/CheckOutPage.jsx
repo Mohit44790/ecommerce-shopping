@@ -56,7 +56,7 @@ const CheckOutPage = () => {
           </div>
 <Link to={"/placeorder"}>
           <button className="mt-6 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition">
-            Place Order
+            Submit Order
           </button></Link>
         </div>
       </div>

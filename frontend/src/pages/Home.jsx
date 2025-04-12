@@ -283,9 +283,9 @@ const Home = () => {
               />
             </div>
             <div className="mt-2 text-sm text-center">
-              <Link to="/" className="font-medium hover:underline block">
-                {cat.title}
-              </Link>
+            <Link to={`/category/${encodeURIComponent(cat.title)}`} className="font-medium hover:underline block">
+                    {cat.title}
+                  </Link>
               <p className="text-xs text-gray-500">{cat.items} items</p>
             </div>
           </div>
@@ -304,9 +304,9 @@ const Home = () => {
               />
             </div>
             <div className="mt-2 text-sm text-center">
-              <Link to="/" className="font-medium hover:underline block">
-                {cat.title}
-              </Link>
+            <Link to={`/category/${encodeURIComponent(cat.title)}`} className="font-medium hover:underline block">
+                    {cat.title}
+                  </Link>
               <p className="text-xs text-gray-500">{cat.items} items</p>
             </div>
           </div>

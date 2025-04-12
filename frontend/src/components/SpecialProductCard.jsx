@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import StarRatings from 'react-star-ratings';
 import { useCart } from '../pages/CartContext'; // <-- Import Cart hook
+import { Link } from 'react-router-dom';
 
 const SpecialProductCard = ({ product }) => {
   const [mainImage, setMainImage] = useState(product.images[0]);
@@ -82,12 +83,12 @@ const SpecialProductCard = ({ product }) => {
         </div>
 
         <div className="flex gap-4">
-          <button
+         <Link to={"/buynow"}> <button
             className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition"
             onClick={() => alert('Buying now not yet implemented')}
           >
             Buy Now
-          </button>
+          </button></Link>
           <button
             className="border border-blue-600 text-blue-600 px-6 py-2 rounded-full hover:bg-blue-50 transition"
             onClick={() => addToCart(product)}
